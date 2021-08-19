@@ -264,7 +264,7 @@
 
 <script>
     async function LongitudFuncion() {
-        const Respuesta = await fetch('http://localhost:3000/direccionGPS/3');
+        const Respuesta = await fetch('http://18.190.134.17:4000/direccionGPS/3');
         const Longitud = await Respuesta.json();
         const D_longitud = Longitud.map(x => x.DES_SEGURIDAD)
         const retornar = parseFloat(D_longitud);
@@ -272,7 +272,7 @@
         return retornar;
     }
     async function LatitudFuncion() {
-        const Respuesta = await fetch('http://localhost:3000/direccionGPS/2');
+        const Respuesta = await fetch('http://18.190.134.17:4000/direccionGPS/2');
         const Latitud = await Respuesta.json();
         const D_latitud = Latitud.map(x => x.DES_SEGURIDAD)
         const retornar = parseFloat(D_latitud);
