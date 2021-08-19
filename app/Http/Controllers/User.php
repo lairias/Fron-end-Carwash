@@ -25,14 +25,14 @@ class User extends Controller
     public function index()
     {
 
-        Http::post('http://localhost:3000/Bitacora', [
+        Http::post('http://18.190.134.17:4000/Bitacora', [
             'ID_PERSONA' => Auth::id(),
             'ACCION' => "Persona Controlador - Vista Personas",
             'DES_BITACORA' => 'Ingreso a las vista de todas las personas',
             'Icono'=> 'far fa-list-alt'
         ]);
 
-        $respuesta = Http::get('http://localhost:3000/persona');
+        $respuesta = Http::get('http://18.190.134.17:4000/persona');
         $personas = $respuesta->json();
 
      
@@ -48,14 +48,14 @@ class User extends Controller
     public function create()
     
     {
-        Http::post('http://localhost:3000/Bitacora', [
+        Http::post('http://18.190.134.17:4000/Bitacora', [
             'ID_PERSONA' => Auth::id(),
             'ACCION' => "Persona Controlador - Vista Nueva-Persona",
             'DES_BITACORA' => 'Ingreso a la vista de nueva persona',
             'Icono'=> 'far fa-eye'
         ]);
 
-       $roles =  Http::get('http://localhost:3000/Roles');
+       $roles =  Http::get('http://18.190.134.17:4000/Roles');
        $getRoles = $roles->json();
 
         return view('Personas.create',compact('getRoles'));
@@ -89,7 +89,7 @@ class User extends Controller
         ]) ;
 
         $imagen = $request['imagen']->store('upload-personas', 'public');
-         Http::post('http://localhost:3000/persona',[
+         Http::post('http://18.190.134.17:4000/persona',[
 
             "name" =>$data['nombre'],
             "email" =>$data['correo'],
@@ -106,7 +106,7 @@ class User extends Controller
             "des_direccion" =>$data['des_direccion'],
             "permiso" =>$data['permiso']
         ]);
-        Http::post('http://localhost:3000/Bitacora', [
+        Http::post('http://18.190.134.17:4000/Bitacora', [
             'ID_PERSONA' => Auth::id(),
             'ACCION' => "Persona Controlador -  Nueva Personas",
             'DES_BITACORA' => 'Creo una nueva persona',
@@ -124,25 +124,25 @@ class User extends Controller
 
     public function show($id)
     {
-        Http::post('http://localhost:3000/Bitacora', [
+        Http::post('http://18.190.134.17:4000/Bitacora', [
             'ID_PERSONA' => Auth::id(),
             'ACCION' => "Persona Controlador - Vista Persona",
             'DES_BITACORA' => 'Perfil de un Usuario ID',
             'Icono' => 'far fa-eye'
 
         ]);
-       $Line = Http::get('http://localhost:3000/Bitacora/'.$id);
+       $Line = Http::get('http://18.190.134.17:4000/Bitacora/'.$id);
        $Bitacoras = $Line->json();
 
 
 
 
-        $respuesta = Http::get('http://localhost:3000/persona/'.$id);
+        $respuesta = Http::get('http://18.190.134.17:4000/persona/'.$id);
         $persona = $respuesta->json();
 
-        $respuesta2 = Http::get('http://localhost:3000/Telefonos/'.$id);
+        $respuesta2 = Http::get('http://18.190.134.17:4000/Telefonos/'.$id);
         $telefono = $respuesta2->json();
-        $respuesta3 = Http::get('http://localhost:3000/Direccion/'.$id);
+        $respuesta3 = Http::get('http://18.190.134.17:4000/Direccion/'.$id);
         $direccion = $respuesta3->json();
         
         return  view('Personas.show', compact('persona', 'Bitacoras','telefono', 'direccion'));
@@ -160,7 +160,7 @@ class User extends Controller
     public function edit($id)
     {
 
-        $roles =  Http::get('http://localhost:3000/Roles');
+        $roles =  Http::get('http://18.190.134.17:4000/Roles');
         $getRoles = $roles->json();
 
         $user = Auth::user();
@@ -168,12 +168,12 @@ class User extends Controller
 
 
 
-        $respuesta = Http::get('http://localhost:3000/persona/' . $id);
+        $respuesta = Http::get('http://18.190.134.17:4000/persona/' . $id);
         $persona = $respuesta->json();
 
-        $respuesta2 = Http::get('http://localhost:3000/Telefonos/' . $id);
+        $respuesta2 = Http::get('http://18.190.134.17:4000/Telefonos/' . $id);
         $telefono = $respuesta2->json();
-        $respuesta3 = Http::get('http://localhost:3000/Direccion/' . $id);
+        $respuesta3 = Http::get('http://18.190.134.17:4000/Direccion/' . $id);
         $direccion = $respuesta3->json();
 
         return view("Personas.edit", compact('getRoles','persona','user1','telefono', 'direccion'));
@@ -211,7 +211,7 @@ class User extends Controller
 
             $imagen = $request['imagen']->store('upload-personas', 'public');
 
-            Http::put('http://localhost:3000/persona/' . $id, [
+            Http::put('http://18.190.134.17:4000/persona/' . $id, [
                 "name" => $data['nombre'],
                 "email" => $data['correo'],
                 "last_name" => $data['apellido'],
@@ -229,10 +229,10 @@ class User extends Controller
                 "estado" => $data['estado']
             ]);
         }else{
-            $respuesta = Http::get('http://localhost:3000/persona/' . $id);
+            $respuesta = Http::get('http://18.190.134.17:4000/persona/' . $id);
             $imagen = $respuesta->json();
             foreach ($imagen as $image) {
-                Http::put('http://localhost:3000/persona/' . $id, [
+                Http::put('http://18.190.134.17:4000/persona/' . $id, [
                     "name" => $data['nombre'],
                     "email" => $data['correo'],
                     "last_name" => $data['apellido'],

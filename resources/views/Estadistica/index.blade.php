@@ -22,7 +22,7 @@
 <script>
     const chart1 = async () => {
 
-        const dia = await fetch('http://localhost:3000/estadistica/dia');
+        const dia = await fetch('http://18.190.134.17:4000/estadistica/dia');
 
         const grafica = await dia.json();
         const grafica2 = await grafica;
@@ -85,7 +85,7 @@
 
     const chart = async () => {
 
-        const dia = await fetch('http://localhost:3000/estadistica/mes');
+        const dia = await fetch('http://18.190.134.17:4000/estadistica/mes');
 
         const grafica = await dia.json();
         const grafica2 = await grafica;

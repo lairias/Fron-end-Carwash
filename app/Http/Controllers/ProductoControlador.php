@@ -21,7 +21,7 @@ class ProductoControlador extends Controller
      */
     public function index()
     {
-        $respuest1 = Http::get('http://localhost:3000/Producto');
+        $respuest1 = Http::get('http://18.190.134.17:4000/Producto');
         $productos = $respuest1->json();
 
         return view('Producto.index',compact('productos'));
@@ -34,9 +34,9 @@ class ProductoControlador extends Controller
      */
     public function create()
     {
-        $respuesta = Http::get('http://localhost:3000/Producto');
-        $respuesta1 = Http::get('http://localhost:3000/Categoria');
-        $respuesta2 = Http::get('http://localhost:3000/Proveedor');
+        $respuesta = Http::get('http://18.190.134.17:4000/Producto');
+        $respuesta1 = Http::get('http://18.190.134.17:4000/Categoria');
+        $respuesta2 = Http::get('http://18.190.134.17:4000/Proveedor');
         $categorias = $respuesta1->json();
         $proveedores = $respuesta2->json();
         $productos = $respuesta->json();
@@ -65,7 +65,7 @@ class ProductoControlador extends Controller
         ]);
         $data = Request();
 
-        $respuesta =  Http::get('http://localhost:3000/Seguridad/4');
+        $respuesta =  Http::get('http://18.190.134.17:4000/Seguridad/4');
         $IVA = $respuesta->json();
         foreach($IVA as $impuesto){
             if ($data['imagen_compra']) {
@@ -74,7 +74,7 @@ class ProductoControlador extends Controller
                 $imagenCompra = $request['imagen_compra']->store('upload-producto-compra', 'public');
                 
 
-                Http::post('http://localhost:3000/Producto', [
+                Http::post('http://18.190.134.17:4000/Producto', [
                     'COD_CATEGORIA' => $data['categoria'],
                     'NOM_PRODUCTO' => $data['nombre'],
                     'IMG_PRODUCTO' =>  $imagenProducto,
@@ -90,7 +90,7 @@ class ProductoControlador extends Controller
                 ]);
             } else {
                 $imagenProducto = $request['imagen']->store('upload-producto', 'public');
-                Http::post('http://localhost:3000/Producto', [
+                Http::post('http://18.190.134.17:4000/Producto', [
                     'COD_CATEGORIA' => $data['categoria'],
                     'NOM_PRODUCTO' => $data['nombre'],
                     'IMG_PRODUCTO' =>  $imagenProducto,
@@ -120,8 +120,8 @@ class ProductoControlador extends Controller
      */
     public function show($id)
     {
-        $respuesta1 = Http::get('http://localhost:3000/Categoria');
-        $respuesta = Http::get('http://localhost:3000/Producto/' . $id);
+        $respuesta1 = Http::get('http://18.190.134.17:4000/Categoria');
+        $respuesta = Http::get('http://18.190.134.17:4000/Producto/' . $id);
         $productos = $respuesta->json();
         $categorias = $respuesta1->json();
         return view('Producto.show', compact('productos','categorias'));
@@ -135,10 +135,10 @@ class ProductoControlador extends Controller
      */
     public function edit($id)
     {
-        $respuesta = Http::get('http://localhost:3000/Producto/'.$id);
-        $respuesta1 = Http::get('http://localhost:3000/Categoria');
-        $respuesta2 = Http::get('http://localhost:3000/Proveedor');
-        $respuesta3 = Http::get('http://localhost:3000/ProveedorProduc/' . $id);
+        $respuesta = Http::get('http://18.190.134.17:4000/Producto/'.$id);
+        $respuesta1 = Http::get('http://18.190.134.17:4000/Categoria');
+        $respuesta2 = Http::get('http://18.190.134.17:4000/Proveedor');
+        $respuesta3 = Http::get('http://18.190.134.17:4000/ProveedorProduc/' . $id);
 
         $categorias = $respuesta1->json();
         $proveedores = $respuesta2->json();
@@ -159,7 +159,7 @@ class ProductoControlador extends Controller
         
         $data = Request();
 
-        $respuesta =  Http::get('http://localhost:3000/Seguridad/4');
+        $respuesta =  Http::get('http://18.190.134.17:4000/Seguridad/4');
         $IVA = $respuesta->json();
         foreach ($IVA as $impuesto) {
             
@@ -167,7 +167,7 @@ class ProductoControlador extends Controller
                 //Imagenes
 
                 $imagenProducto = $request['imagen']->store('upload-producto', 'public');
-                Http::put('http://localhost:3000/Producto/'.$id,[
+                Http::put('http://18.190.134.17:4000/Producto/'.$id,[
                     'COD_CATEGORIA' => $data['categoria'],
                     'NOM_PRODUCTO' => $data['nombre'],
                     'IMG_PRODUCTO' =>  $imagenProducto,
@@ -185,10 +185,10 @@ class ProductoControlador extends Controller
                 ]);
             } else {
 
-               $respuesta =  Http::get('http://localhost:3000/Producto/' . $id);
+               $respuesta =  Http::get('http://18.190.134.17:4000/Producto/' . $id);
                $imgen = $respuesta->json();
                foreach($imgen as $imagen){
-                    Http::put('http://localhost:3000/Producto/' . $id, [
+                    Http::put('http://18.190.134.17:4000/Producto/' . $id, [
                         'COD_CATEGORIA' => $data['categoria'],
                         'NOM_PRODUCTO' => $data['nombre'],
                         'IMG_PRODUCTO' =>  $imagen['IMG_PRODUCTO'],

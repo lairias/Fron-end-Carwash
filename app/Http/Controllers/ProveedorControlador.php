@@ -20,9 +20,9 @@ class ProveedorControlador extends Controller
     public function index()
     {
 
-        $respuesta = Http::get('http://localhost:3000/Proveedor');
-        $respuesta1 = Http::get('http://localhost:3000/persona');
-        $respuesta2 = Http::get('http://localhost:3000/ProveedorTelefono');
+        $respuesta = Http::get('http://18.190.134.17:4000/Proveedor');
+        $respuesta1 = Http::get('http://18.190.134.17:4000/persona');
+        $respuesta2 = Http::get('http://18.190.134.17:4000/ProveedorTelefono');
         $proveedores = $respuesta->json();
         $telefonos = $respuesta2->json();
         $user = $respuesta1->json();
@@ -62,7 +62,7 @@ class ProveedorControlador extends Controller
         ]);
 
         $imagen = $request['imagen']->store('upload-proveedor', 'public');
-        Http::post('http://localhost:3000/Proveedor', [
+        Http::post('http://18.190.134.17:4000/Proveedor', [
 
             "NOMBRE" => $data['nombre'],
             "APELLIDO" => $data['apellido'],

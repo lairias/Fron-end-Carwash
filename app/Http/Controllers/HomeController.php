@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
 
 
-        Http::post('http://localhost:3000/Bitacora', [
+        Http::post('http://18.190.134.17:4000/Bitacora', [
             'ID_PERSONA' => Auth::id(),
             'ACCION' => "Inicio Controlador - Vista Inicial",
             'DES_BITACORA' => 'Ingreso al sistema',
@@ -29,7 +29,7 @@ class HomeController extends Controller
         if ($estado) {
 
 
-           $respuesta =Http::get('http://localhost:3000/Imagenes');
+           $respuesta =Http::get('http://18.190.134.17:4000/Imagenes');
            $Imagenes = $respuesta->json();
             return view('admin.home',compact('Imagenes'));
         } else {
@@ -78,7 +78,7 @@ class HomeController extends Controller
     public function edit($id)
     {
 
-        $respuesta =  Http::get('http://localhost:3000/Imagenes/'.$id);
+        $respuesta =  Http::get('http://18.190.134.17:4000/Imagenes/'.$id);
         $Imagenes  = $respuesta->json();
         return view("admin.edit",compact("Imagenes"));
     }
@@ -100,7 +100,7 @@ class HomeController extends Controller
 
         $imagen = $request['imagen']->store('upload-Incio', 'public');
 
-            Http::put('http://localhost:3000/Imagenes/'.$id, [
+            Http::put('http://18.190.134.17:4000/Imagenes/'.$id, [
                 "IMG" => $imagen,
                 "NOM_IMG" => $data['nombre'],
                 "DES_IMG" => $data['Des_imagen'],

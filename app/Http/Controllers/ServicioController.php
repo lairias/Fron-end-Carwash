@@ -20,7 +20,7 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        $respuesta = Http::get('http://localhost:3000/Servicio');
+        $respuesta = Http::get('http://18.190.134.17:4000/Servicio');
         $servicios = $respuesta->json();
 
         return view('Services.index',compact('servicios'));
@@ -35,7 +35,7 @@ class ServicioController extends Controller
 
     {
 
-        $respuesta = Http::get('http://localhost:3000/persona');
+        $respuesta = Http::get('http://18.190.134.17:4000/persona');
         $personas = $respuesta->json();
         return view('Services.create', compact('personas'));
     }
@@ -61,7 +61,7 @@ class ServicioController extends Controller
 
         $imagen = $request['imagen']->store('upload-servicios', 'public');
 
-        Http::post('http://localhost:3000/Servicio',[
+        Http::post('http://18.190.134.17:4000/Servicio',[
             "ID_PERSONA" => $data['empleado'],
             "TIP_SERVICIO" => $data['servicio'],
             "COST_SERVICIO" => $data['costo'],
@@ -84,7 +84,7 @@ class ServicioController extends Controller
      */
     public function show($id)
     {
-        $respuesta =  Http::get('http://localhost:3000/Servicio/'.$id);
+        $respuesta =  Http::get('http://18.190.134.17:4000/Servicio/'.$id);
         $servicios = $respuesta->json();
 
         return view('Services.sho', compact('servicios'));
@@ -98,8 +98,8 @@ class ServicioController extends Controller
      */
     public function edit($id)
     {
-        $respuesta =  Http::get('http://localhost:3000/Servicio/' . $id);
-        $respuesta1 =  Http::get('http://localhost:3000/persona');
+        $respuesta =  Http::get('http://18.190.134.17:4000/Servicio/' . $id);
+        $respuesta1 =  Http::get('http://18.190.134.17:4000/persona');
         $servicios = $respuesta->json();
         $personas = $respuesta1->json();
 
@@ -120,7 +120,7 @@ class ServicioController extends Controller
         if($data['imagen']){
             $imagen = $request['imagen']->store('upload-servicios', 'public');
 
-            Http::put('http://localhost:3000/Servicio/'.$id,[
+            Http::put('http://18.190.134.17:4000/Servicio/'.$id,[
                 "ID_PERSONA"=>$data['empleado'],
                 "TIP_SERVICIO"=>$data['servicio'],
                 "COST_SERVICIO" =>$data['costo'],
@@ -135,11 +135,11 @@ class ServicioController extends Controller
             ]);
 
         }else{
-            $respuesta = Http::get('http://localhost:3000/Servicio/' . $id);
+            $respuesta = Http::get('http://18.190.134.17:4000/Servicio/' . $id);
             $imagen = $respuesta->json();
 
             foreach ($imagen as $image) {
-            Http::put('http://localhost:3000/Servicio/'.$id,[
+            Http::put('http://18.190.134.17:4000/Servicio/'.$id,[
                 "ID_PERSONA" => $data['empleado'],
                 "TIP_SERVICIO" => $data['servicio'],
                 "COST_SERVICIO" => $data['costo'],

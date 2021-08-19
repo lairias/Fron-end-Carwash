@@ -11,12 +11,12 @@ class InicioController extends Controller
     public function index(){
 
        
-        $Testimoniales = Http::get('http://localhost:3000/Testimonial/');
+        $Testimoniales = Http::get('http://18.190.134.17:4000/Testimonial/');
         $ArrayTestimoniales = $Testimoniales->json();
 
-        $ArayServicios = Http::get('http://localhost:3000/Servicio');
+        $ArayServicios = Http::get('http://18.190.134.17:4000/Servicio');
         $Servicios = $ArayServicios->json();
-        $respuestaIMG = Http::get('httP://localhost:3000/Imagenes');
+        $respuestaIMG = Http::get('http://18.190.134.17:4000/Imagenes');
         $Imagenes = $respuestaIMG->json();
 
         return view ('inicio.index',compact('Imagenes'))->with('ArrayTestimoniales', $ArrayTestimoniales)->with('Servicios', $Servicios);

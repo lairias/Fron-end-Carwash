@@ -281,7 +281,7 @@
                 }
                 debugger
 
-                fetch('http://localhost:3000/Cliente', options).then(repuesta => {
+                fetch('http://18.190.134.17:4000/Cliente', options).then(repuesta => {
                     debugger
                 })
                 console.log(data);
@@ -305,7 +305,7 @@
                 }
 
 
-                fetch('http://localhost:3000/Cliente', options).then(repuesta => {
+                fetch('http://18.190.134.17:4000/Cliente', options).then(repuesta => {
                     debugger
                 })
             }
@@ -332,7 +332,7 @@
         // }
 
 
-        // fetch('http://localhost:3000/VentaDetalle', options).then(repuesta => {
+        // fetch('http://18.190.134.17:4000/VentaDetalle', options).then(repuesta => {
         //     debugger
         // })
 
@@ -342,7 +342,7 @@
     BuscarCliente.addEventListener('keyup', (e) => {
         e.preventDefault();
         let Cliente = async (Iden) => {
-            let respuesta = await fetch(`http://localhost:3000/personaIdentificacion/${Iden}`);
+            let respuesta = await fetch(`http://18.190.134.17:4000/personaIdentificacion/${Iden}`);
             let res_cliente = await respuesta.json();
             if (res_cliente.length > 0) {
 
@@ -375,8 +375,8 @@
         e.preventDefault();
 
         const Codigo = async (Iden) => {
-            console.log(`http://localhost:3000/ProductoCodigo/${Iden}`)
-            let respuesta = await fetch(`http://localhost:3000/ProductoCodigo/${Iden}`);
+            console.log(`http://18.190.134.17:4000/ProductoCodigo/${Iden}`)
+            let respuesta = await fetch(`http://18.190.134.17:4000/ProductoCodigo/${Iden}`);
             let res_cliente = await respuesta.json();
             if (res_cliente.length > 0) {
 
@@ -448,7 +448,7 @@
         }
 
 
-        fetch('http://localhost:3000/VentaDetalle', options).then(repuesta => {
+        fetch('http://18.190.134.17:4000/VentaDetalle', options).then(repuesta => {
             debugger
         })
     });

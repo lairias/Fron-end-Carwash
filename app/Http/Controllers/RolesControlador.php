@@ -23,9 +23,9 @@ class RolesControlador extends Controller
     public function index()
     {
 
-        $respuesta = Http::get('http://localhost:3000/Permisos');
+        $respuesta = Http::get('http://18.190.134.17:4000/Permisos');
         $personas = $respuesta->json();
-        $respuesta1 = Http::get('http://localhost:3000/Roles/');
+        $respuesta1 = Http::get('http://18.190.134.17:4000/Roles/');
         $Roles = $respuesta1->json();
 
        
@@ -40,7 +40,7 @@ class RolesControlador extends Controller
      */
     public function create()
     {
-        $respuesta2 = Http::get('http://localhost:3000/RolesH/');
+        $respuesta2 = Http::get('http://18.190.134.17:4000/RolesH/');
         $AllRoles = $respuesta2->json();
         return view('Roles.create', compact('AllRoles'));
     }
@@ -55,19 +55,19 @@ class RolesControlador extends Controller
     {
         $data= $request;
 
-        Http::post('http://localhost:3000/Roles',[
+        Http::post('http://18.190.134.17:4000/Roles',[
             "NAME"=> $data['nombre']
         ]);
 
         $id= 0;
-        $respuesta = Http::get('http://localhost:3000/RolesNombre/'.$data["nombre"]);
+        $respuesta = Http::get('http://18.190.134.17:4000/RolesNombre/'.$data["nombre"]);
         $ROLES = $respuesta->json();
        foreach($ROLES as $rol){
            $id = $rol['id'];
 
        }
        foreach($data['permiso'] as $permiso){
-           Http::post('http://localhost:3000/RolesH/',[
+           Http::post('http://18.190.134.17:4000/RolesH/',[
                 "IDPERMI" => $permiso ,
                 "IDROL" => $id
            ]);
@@ -96,11 +96,11 @@ class RolesControlador extends Controller
      */
     public function edit($id)
     {
-        $respuesta = Http::get('http://localhost:3000/RolesN/'.$id);
+        $respuesta = Http::get('http://18.190.134.17:4000/RolesN/'.$id);
         $Count = $respuesta->json();
-        $respuesta1 = Http::get('http://localhost:3000/Roles/'.$id);
+        $respuesta1 = Http::get('http://18.190.134.17:4000/Roles/'.$id);
         $Roles = $respuesta1->json();
-        $respuesta2 = Http::get('http://localhost:3000/RolesH/');
+        $respuesta2 = Http::get('http://18.190.134.17:4000/RolesH/');
         $AllRoles = $respuesta2->json();
 
        return view('Roles.edit',compact('Roles','Count', 'AllRoles'));
@@ -117,21 +117,21 @@ class RolesControlador extends Controller
     {
         $data = $request;
        
-        $respuesta1 = Http::get('http://localhost:3000/Roles/' . $id);
+        $respuesta1 = Http::get('http://18.190.134.17:4000/Roles/' . $id);
         $Roles = $respuesta1->json();
         foreach($Roles as $roles){
             foreach($data['permiso'] as $da){
 
                 if ($roles['PermisoID'] == $da) {
-                    Http::post('http://localhost:3000/RolesH/', [
+                    Http::post('http://18.190.134.17:4000/RolesH/', [
                         "IDPERMI" => $da,"IDROL" => $id]);
                     
                 }else{
-                    Http::post('http://localhost:3000/RolesH/', [
+                    Http::post('http://18.190.134.17:4000/RolesH/', [
                         "IDPERMI" => $da,
                         "IDROL" => $id
                     ]);
-                    Http::delete('http://localhost:3000/Roles/' . $id, [
+                    Http::delete('http://18.190.134.17:4000/Roles/' . $id, [
                         "Rol" => $roles['PermisoID']
                     ]);
                 }

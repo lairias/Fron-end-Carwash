@@ -21,7 +21,7 @@ class EstadisticaController extends Controller
      */
     public function index()
     {
-       $personas = Http::get('http://localhost:3000/persona');
+       $personas = Http::get('http://18.190.134.17:4000/persona');
        $personasArray = $personas->json();
        
        return view('Estadistica.index',compact('personasArray'));
@@ -29,22 +29,22 @@ class EstadisticaController extends Controller
     public function widgets()
     {
         
-        $Total_personas = Http::get('http://localhost:3000/estadistica/TotalPeronas');
+        $Total_personas = Http::get('http://18.190.134.17:4000/estadistica/TotalPeronas');
         $total = $Total_personas->json([0]);
 
-        $Total_Producto = Http::get('http://localhost:3000/estadistica/CantidadProducto');
+        $Total_Producto = Http::get('http://18.190.134.17:4000/estadistica/CantidadProducto');
         $Productos = $Total_Producto->json([0]);
 
-        $Total_Admi = Http::get('http://localhost:3000/estadistica/TotalAdministrado');
+        $Total_Admi = Http::get('http://18.190.134.17:4000/estadistica/TotalAdministrado');
         $Admin = $Total_Admi->json([0]);
 
-        $Total_empleado = Http::get('http://localhost:3000/estadistica/TotalEmpleado');
+        $Total_empleado = Http::get('http://18.190.134.17:4000/estadistica/TotalEmpleado');
         $Empleado = $Total_empleado->json([0]);
 
-        $Total_mecanico = Http::get('http://localhost:3000/estadistica/TotalEmpleado');
+        $Total_mecanico = Http::get('http://18.190.134.17:4000/estadistica/TotalEmpleado');
         $Mecanico = $Total_mecanico->json([0]);
 
-        $Total_Proveedor = Http::get('http://localhost:3000/estadistica/Proveedor');
+        $Total_Proveedor = Http::get('http://18.190.134.17:4000/estadistica/Proveedor');
         $Proveedor = $Total_Proveedor->json([0]);
 
       
